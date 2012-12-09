@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.9.1: http://docutils.sourceforge.net/" />
+<meta name="version" content="S5 1.1" />
+<title>Gerrit overview</title>
+<meta name="author" content="Yuriy Taraday" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7434 2012-05-11 21:06:27Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { /* line numbers */
+  color: grey;
+}
+
+.code {
+  background-color: #eeeeee
+}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<script src="ui/advanced_utf/slides.js" type="text/javascript"></script>
+<link rel="stylesheet" href="ui/advanced_utf/slides.css"
+      type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/advanced_utf/outline.css"
+      type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/advanced_utf/print.css"
+      type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/advanced_utf/opera.css"
+      type="text/css" media="projection" id="operaFix" />
+
+<style type="text/css">
+#currentSlide {display: none;}
+</style>
+</head>
+<body>
+<div class="layout">
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header">
+
+</div>
+<div id="footer">
+<h1>Gerrit overview</h1>
+
+</div>
+</div>
+<div class="presentation">
+<div class="slide" id="slide0">
+<h1 class="title">Gerrit overview</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>Yuriy Taraday</td></tr>
+<tr><th class="docinfo-name">Contact:</th>
+<td><a class="first reference external" href="mailto:yorik.sar&#64;gmail.com">yorik.sar&#64;gmail.com</a>; <a class="last reference external" href="mailto:ytaraday&#64;mirantis.com">ytaraday&#64;mirantis.com</a></td></tr>
+</tbody>
+</table>
+<!-- Definitions of interpreted text roles (classes) for S5/HTML data. -->
+<!-- This data file has been placed in the public domain. -->
+<!-- Colours
+======= -->
+<!-- Text Sizes
+========== -->
+<!-- Display in Slides (Presentation Mode) Only
+========================================== -->
+<!-- Display in Outline Mode Only
+============================ -->
+<!-- Display in Print Only
+===================== -->
+<!-- Display in Handout Mode Only
+============================ -->
+<!-- Incremental Display
+=================== -->
+<div class="notes container">
+<p>Outline should be:</p>
+<ul class="simple">
+<li>Gerrit's place in the world</li>
+<li>Gerrit data model and terminology</li>
+<li>Gerrit change request lifetime</li>
+<li>Big Workflow picture</li>
+<li>How to use it with Git only</li>
+<li>How to use git-review</li>
+</ul>
+</div>
+
+</div>
+<div class="slide" id="gerrit-origins">
+<h1>Gerrit origins</h1>
+<ul class="simple">
+<li>Fork of Guido's Rietveld</li>
+<li>Named after Gerrit Rietveld</li>
+<li>Originally written in Python, moved to Java and GWT</li>
+<li>Incorporates Java-based Git server (based on JGit) and SSH (Mina SSH)</li>
+<li>Initially developed for Android, currently is used for a number of other
+opensource projects (CyanogenMod, OpenStack, etc)</li>
+</ul>
+<div class="notes container">
+<p>Forked because Guido didn't want to complicate Rietveld code with ACL stuff</p>
+<p>Gerrit Rietveld - Dutch architect Guido is fond of</p>
+<p>Apache Mina SSH daemon - some claim it's slow, but it looks like it's
+enough for entire Android community</p>
+</div>
+</div>
+<div class="slide" id="common-collaboration-scheme">
+<h1>Common collaboration scheme</h1>
+<img alt="images/generic_process.png" class="tall align-center" src="images/generic_process.png" />
+<div class="notes container">
+Even with distributed VCS, some authoritative repository is used, code
+review is done using feature branches and commiting to master branch with
+gate.</div>
+</div>
+<div class="slide" id="gerrit-collaboration-scheme">
+<h1>Gerrit collaboration scheme</h1>
+<img alt="images/gerrit_process.png" class="tall align-center" src="images/gerrit_process.png" />
+<div class="notes container">
+<p>Gerrit manages authoritative repo, all changes are first stored in separate
+area for review and are merged to repo's branches only on successful
+review.</p>
+<p>Developers and CI infrustructure fetch code from that repo.</p>
+<p>Gerrit also provides very powerfull access control stuff.</p>
+</div>
+</div>
+<div class="slide" id="gerrit-data-model-and-terminology">
+<h1>Gerrit data model and terminology</h1>
+<ul class="incremental simple">
+<li>Project (Git repository)</li>
+<li>Branch</li>
+<li>Change request</li>
+<li>Patchset (one and only commit)</li>
+<li>Comment (+ inline comments)</li>
+<li>Label (like +1)</li>
+</ul>
+<div class="notes container">
+<dl class="docutils">
+<dt>Project</dt>
+<dd>a big manageable piece, actually a single repo controlled by Gerrit</dd>
+<dt>Branch</dt>
+<dd>a branch in that repo that is visible to outer world</dd>
+<dt>Change request</dt>
+<dd><ul class="first last simple">
+<li>can be though of as a branch but it's always a single commit changing</li>
+<li>Has attributes like &quot;status&quot; (Review, Abandonned, Merged), &quot;owner&quot; (the
+one who pushed it first)</li>
+<li>is tied to a specific branch of a specific project</li>
+<li>change id is generated from commit's tree id, parent commit id,
+comitter and author</li>
+</ul>
+</dd>
+<dt>Patchset</dt>
+<dd><ul class="first last simple">
+<li>represents one version of each change, requires constant amending</li>
+<li>they are tied to change request by change-id in commit message, every
+new pushed commit becomes new change request otherwise</li>
+<li>parent commit must be merged into the branch to let the patchset
+through</li>
+</ul>
+</dd>
+<dt>Comment</dt>
+<dd><ul class="first last simple">
+<li>anyone with access to the change can just write some comment or a
+number of inline comments and publish them</li>
+<li>users with review rights can place their +-1 labels on the current
+patchset</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="slide" id="change-request-lifetime">
+<h1>Change request lifetime</h1>
+<div class="center tall container">
+<svg width="512pt" height="300pt"
+ viewBox="0.00 0.00 512.00 300.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 296)">
+<title>lifetime</title>
+<!-- created -->
+<g id="node1" class="node"><title>created</title>
+<ellipse fill="none" stroke="black" cx="225" cy="-274" rx="77.4897" ry="18"/>
+<text text-anchor="middle" x="225" y="-270.3" font-family="Times,serif" font-size="14.00">Patch set 1 pushed</text>
+</g>
+<!-- review -->
+<g id="node4" class="node"><title>review</title>
+<ellipse fill="none" stroke="black" cx="225" cy="-202" rx="92.413" ry="18"/>
+<text text-anchor="middle" x="225" y="-198.3" font-family="Times,serif" font-size="14.00">Everybody take a look</text>
+</g>
+<!-- created&#45;&gt;review -->
+<g id="edge4" class="edge"><title>created&#45;&gt;review</title>
+<path fill="none" stroke="black" d="M225,-255.697C225,-247.983 225,-238.712 225,-230.112"/>
+<polygon fill="black" stroke="black" points="228.5,-230.104 225,-220.104 221.5,-230.104 228.5,-230.104"/>
+</g>
+<!-- abandon -->
+<g id="node3" class="node"><title>abandon</title>
+<ellipse fill="none" stroke="black" cx="57" cy="-202" rx="57.2927" ry="18"/>
+<text text-anchor="middle" x="57" y="-198.3" font-family="Times,serif" font-size="14.00">Abandonned</text>
+</g>
+<!-- abandon&#45;&gt;review -->
+<g id="edge15" class="edge"><title>abandon&#45;&gt;review</title>
+<path fill="none" stroke="black" d="M124.66,-202C127.151,-202 129.641,-202 132.132,-202"/>
+<polygon fill="black" stroke="black" points="124.422,-198.5 114.422,-202 124.422,-205.5 124.422,-198.5"/>
+</g>
+<!-- complaint -->
+<g id="node5" class="node"><title>complaint</title>
+<ellipse fill="none" stroke="black" cx="420" cy="-202" rx="84.2388" ry="18"/>
+<text text-anchor="middle" x="420" y="-198.3" font-family="Times,serif" font-size="14.00">Someone complains</text>
+</g>
+<!-- review&#45;&gt;complaint -->
+<g id="edge17" class="edge"><title>review&#45;&gt;complaint</title>
+<path fill="none" stroke="black" d="M317.549,-202C320.175,-202 322.801,-202 325.428,-202"/>
+<polygon fill="black" stroke="black" points="325.558,-205.5 335.558,-202 325.558,-198.5 325.558,-205.5"/>
+</g>
+<!-- verified -->
+<g id="node8" class="node"><title>verified</title>
+<ellipse fill="none" stroke="black" cx="110" cy="-130" rx="46.2191" ry="18"/>
+<text text-anchor="middle" x="110" y="-126.3" font-family="Times,serif" font-size="14.00">Verify +1</text>
+</g>
+<!-- review&#45;&gt;verified -->
+<g id="edge9" class="edge"><title>review&#45;&gt;verified</title>
+<path fill="none" stroke="black" d="M198.328,-184.765C181.716,-174.653 160.23,-161.575 142.609,-150.849"/>
+<polygon fill="black" stroke="black" points="144.155,-147.693 133.793,-145.483 140.515,-153.672 144.155,-147.693"/>
+</g>
+<!-- reviewed -->
+<g id="node9" class="node"><title>reviewed</title>
+<ellipse fill="none" stroke="black" cx="225" cy="-130" rx="50.5427" ry="18"/>
+<text text-anchor="middle" x="225" y="-126.3" font-family="Times,serif" font-size="14.00">Review +1</text>
+</g>
+<!-- review&#45;&gt;reviewed -->
+<g id="edge5" class="edge"><title>review&#45;&gt;reviewed</title>
+<path fill="none" stroke="black" d="M225,-183.697C225,-175.983 225,-166.712 225,-158.112"/>
+<polygon fill="black" stroke="black" points="228.5,-158.104 225,-148.104 221.5,-158.104 228.5,-158.104"/>
+</g>
+<!-- approved -->
+<g id="node10" class="node"><title>approved</title>
+<ellipse fill="none" stroke="black" cx="344" cy="-130" rx="50.5427" ry="18"/>
+<text text-anchor="middle" x="344" y="-126.3" font-family="Times,serif" font-size="14.00">Review +2</text>
+</g>
+<!-- review&#45;&gt;approved -->
+<g id="edge12" class="edge"><title>review&#45;&gt;approved</title>
+<path fill="none" stroke="black" d="M252.6,-184.765C269.673,-174.722 291.72,-161.753 309.884,-151.068"/>
+<polygon fill="black" stroke="black" points="312.136,-153.804 318.981,-145.717 308.587,-147.77 312.136,-153.804"/>
+</g>
+<!-- fix -->
+<g id="node6" class="node"><title>fix</title>
+<ellipse fill="none" stroke="black" cx="402" cy="-274" rx="64.0172" ry="18"/>
+<text text-anchor="middle" x="402" y="-270.3" font-family="Times,serif" font-size="14.00">Someone fixes</text>
+</g>
+<!-- fix&#45;&gt;review -->
+<g id="edge21" class="edge"><title>fix&#45;&gt;review</title>
+<path fill="none" stroke="black" d="M366.181,-258.834C339.499,-248.282 302.772,-233.757 273.465,-222.167"/>
+<polygon fill="black" stroke="black" points="274.423,-218.782 263.837,-218.359 271.849,-225.292 274.423,-218.782"/>
+</g>
+<!-- fix&#45;&gt;complaint -->
+<g id="edge19" class="edge"><title>fix&#45;&gt;complaint</title>
+<path fill="none" stroke="black" d="M408.956,-245.949C411.191,-237.257 413.603,-227.876 415.602,-220.104"/>
+<polygon fill="black" stroke="black" points="405.55,-245.14 406.449,-255.697 412.33,-246.883 405.55,-245.14"/>
+</g>
+<!-- lastdot -->
+<g id="node11" class="node"><title>lastdot</title>
+<ellipse fill="black" stroke="black" cx="225" cy="-74" rx="1.8" ry="1.8"/>
+</g>
+<!-- verified&#45;&gt;lastdot -->
+<g id="edge10" class="edge"><title>verified&#45;&gt;lastdot</title>
+<path fill="none" stroke="black" d="M138.427,-115.652C163.02,-104.104 197.243,-88.0339 214.361,-79.9959"/>
+<polygon fill="black" stroke="black" points="216.11,-83.0413 223.674,-75.6228 213.134,-76.7051 216.11,-83.0413"/>
+</g>
+<!-- reviewed&#45;&gt;lastdot -->
+<g id="edge6" class="edge"><title>reviewed&#45;&gt;lastdot</title>
+<path fill="none" stroke="black" d="M225,-111.914C225,-103.479 225,-93.5439 225,-86.107"/>
+<polygon fill="black" stroke="black" points="228.5,-85.9372 225,-75.9373 221.5,-85.9373 228.5,-85.9372"/>
+</g>
+<!-- approved&#45;&gt;lastdot -->
+<g id="edge13" class="edge"><title>approved&#45;&gt;lastdot</title>
+<path fill="none" stroke="black" d="M313.971,-115.374C288.388,-103.764 253.08,-87.7421 235.635,-79.826"/>
+<polygon fill="black" stroke="black" points="236.91,-76.5609 226.357,-75.6157 234.017,-82.9353 236.91,-76.5609"/>
+</g>
+<!-- merged -->
+<g id="node12" class="node"><title>merged</title>
+<ellipse fill="none" stroke="black" cx="225" cy="-18" rx="48.1437" ry="18"/>
+<text text-anchor="middle" x="225" y="-14.3" font-family="Times,serif" font-size="14.00">Submitted</text>
+</g>
+<!-- lastdot&#45;&gt;merged -->
+<g id="edge7" class="edge"><title>lastdot&#45;&gt;merged</title>
+<path fill="none" stroke="black" d="M225,-72.0627C225,-68.803 225,-57.5415 225,-46.2268"/>
+<polygon fill="black" stroke="black" points="228.5,-46.0488 225,-36.0489 221.5,-46.0489 228.5,-46.0488"/>
+</g>
+</g>
+</svg>
+</div>
+<div class="notes container">
+<p>It's very simplified.</p>
+<ul class="simple">
+<li>Someone pushes one's code to Gerrit, creates a new change</li>
+<li>Now change is open for everyone to look at</li>
+<li>Verifier (can be some Jenkins running unittests or QA engineer) can label
+it with Verifiy +1 or -1 labels</li>
+<li>Anyone can give it a Review +1 or -1, these labels are only states of
+opinion.</li>
+<li>Approver (core developer, dev manager or smth like that) can give it +2
+or -2.</li>
+<li>Once change (current patchset) gathered Verify +1 and Review +2, it can
+be submitted to the branch.</li>
+<li>If someone doesn't like something, one places a &quot;-&quot; label, so that
+everyone including the author can see that smth is wrong, fix it and push
+a new patchset.</li>
+<li>If author gives up on pushing this change, one can abandon it.</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="labels-verified">
+<h1>Labels: Verified</h1>
+<ul class="incremental simple">
+<li>-1 Fails - smth is broken (persists, blocks submit)</li>
+<li>0 No score - I no QA, I know no tests</li>
+<li>+1 Verified- code works (enables submit)</li>
+</ul>
+</div>
+<div class="slide" id="labels-review">
+<h1>Labels: Review</h1>
+<ul class="incremental simple">
+<li>-2 Do not submit - awful, unacceptable (persists, blocks submit)</li>
+<li>-1 I would prefer you didn't submit this - I don't like it (but just an
+opinion)</li>
+<li>0 No score - I read code no</li>
+<li>+1 LGTM, but someone else must approve - I like it, but can't or won't
+approve</li>
+<li>+2 LGTM, approved - We'll merge it (enables submit)</li>
+</ul>
+</div>
+<div class="slide" id="submit-requirements">
+<h1>Submit requirements</h1>
+<ul class="simple">
+<li>no &quot;-1 Fails&quot;</li>
+<li>no &quot;-2 Do not submit&quot;</li>
+<li>at least one &quot;+1 Verified&quot;</li>
+<li>at least one &quot;+2 Approved&quot;</li>
+<li>merged parent (dependency)</li>
+</ul>
+</div>
+<div class="slide" id="big-workflow-picture">
+<h1>Big workflow picture</h1>
+<img alt="images/big_workflow.png" class="tall align-center" src="images/big_workflow.png" />
+<div class="notes container">
+<p>Picture shows workflow used by Android community.</p>
+<p>Basically everything's the same as at previous picture, but with more
+details</p>
+</div>
+</div>
+<div class="slide" id="how-to-use-it-with-git">
+<h1>How to use it with Git</h1>
+<ul class="incremental">
+<li><p class="first">URL looks like <span class="small">ssh://&lt;USER&gt;&#64;&lt;host&gt;:29418/&lt;PROJECT&gt;</span></p>
+</li>
+<li><p class="first">Create a new change:</p>
+<pre class="literal-block">
+git push gerrit HEAD:refs/for/thebranch
+</pre>
+</li>
+<li><p class="first">Create a new patchset in a change:</p>
+<pre class="literal-block">
+git push gerrit HEAD:refs/change/&lt;SHORT_ID&gt;
+</pre>
+</li>
+<li><p class="first">You can even need to do something like this:</p>
+<pre class="literal-block">
+git push gerrit HEAD:refs/for/master
+                HEAD~3:refs/changes/1500
+                HEAD~1:refs/changes/1501
+                HEAD~0:refs/changes/1502
+</pre>
+</li>
+</ul>
+<div class="notes container">
+<ul class="simple">
+<li>It's better to create a remote for simpler usage</li>
+<li>Gerrit will create a change request for every commit that is absent in
+branch and is not tied to any existing patchset.</li>
+<li>Note that Gerrit will process all parents of HEAD as well</li>
+<li>To avoid this, always use Change-Id line</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="change-id-magic">
+<h1>Change-Id magic</h1>
+<ul class="incremental">
+<li><p class="first">Every change request has a long id that looks like 'I' + SHA</p>
+</li>
+<li><p class="first">If it is in commit message, Gerrit will always treat this commit as a
+patchset for this change:</p>
+<pre class="literal-block">
+Short commit description
+
+Some long lines about life, the Universe and everything.
+
+Change-Id: Ic0ffeec0ffeec0ffeec0ffeec0ffeec0ffeec0ff
+</pre>
+</li>
+<li><p class="first">Gerrit comes with a commit message hook that automatically generates
+Change-Id line in every commit:</p>
+<pre class="literal-block">
+scp -p -P 29418 &lt;USER&gt;&#64;&lt;HOST&gt;:hooks/commit-msg .git/hooks/
+curl -o .git/hooks/commit-msg http://&lt;HOST&gt;/tools/hooks/commit-msg
+</pre>
+</li>
+</ul>
+<ul class="notes simple">
+<li>you can find Change ID of old change requests on their page</li>
+<li>the hook generates ID from tree, author, commiter and first parent</li>
+<li>with this hook you can always push to refs/for/master</li>
+</ul>
+</div>
+<div class="slide" id="review-process">
+<h1>Review process</h1>
+<p class="center">Short demo</p>
+<div class="notes container">
+<ul class="simple">
+<li>Create a couple of commits</li>
+<li>push them manually</li>
+<li>show them in web</li>
+<li>show diff, inline comments</li>
+<li>show labels and big comments</li>
+<li>how labels disapear</li>
+<li>how they don't</li>
+<li>finally submit</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="git-review-utility">
+<h1>git-review utility</h1>
+<p class="incremental">Problems:</p>
+<ul class="incremental simple">
+<li>using plain Git with Gerrit is mouthfull</li>
+<li>newcommers have to learn a lot to join project</li>
+<li>number of steps are too common to be manual</li>
+</ul>
+<p class="incremental">OpenStackers created git-review tool</p>
+<ul class="incremental">
+<li><p class="first">install:</p>
+<pre class="literal-block">
+pip install git-review
+</pre>
+</li>
+<li><p class="first">almost all you need is:</p>
+<pre class="literal-block">
+git review
+</pre>
+</li>
+</ul>
+<div class="notes container">
+<p>OpenStack wanted to migrate to Gerrit, but it was too complex</p>
+<p>Internally git-review uses gerrit command line interface</p>
+</div>
+</div>
+<div class="slide" id="git-review-config">
+<h1>git-review: config</h1>
+<p>You should have .gitconfig file in repo to let every user benefit from
+git-review</p>
+<pre class="literal-block">
+[gerrit]
+host=gerrit.example.com
+port=29418
+project=myopenstack/keystone
+defaultremote=gerrit-myopenstak
+defaultbranch=longlived-branch
+</pre>
+<p>defaultremote allows to use one repo with several Gerrits (internal and
+upstream)</p>
+<p>defaultbranch leaves no place to forget where to push</p>
+<div class="notes container">
+<p>File should be created/edited by project/branch maintainer.</p>
+<p>Merges should not affect it.</p>
+</div>
+</div>
+<div class="slide" id="git-review-workflow">
+<h1>git-review: workflow</h1>
+<ul class="incremental">
+<li><p class="first">clone repo</p>
+</li>
+<li><p class="first">install commit_msg hook, and create remote</p>
+<pre class="literal-block">
+git review -s
+</pre>
+</li>
+<li><p class="first">rebase on top of fresh upstream and push changes</p>
+<pre class="literal-block">
+git review
+</pre>
+</li>
+<li><p class="first">list pending changes</p>
+<pre class="literal-block">
+git review -l
+</pre>
+</li>
+<li><p class="first">get one of them to separate local branch</p>
+<pre class="literal-block">
+git review -d &lt;SHORT_ID&gt;
+</pre>
+</li>
+<li><p class="first">more in help page</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="conclusion">
+<h1>Conclusion</h1>
+<ul class="incremental simple">
+<li>Gerrit is not as scary</li>
+<li>Change-Id line saves a lot of nerve</li>
+<li>git-review tool saves your time</li>
+</ul>
+</div>
+<div class="slide" id="the-end">
+<h1>The end</h1>
+<p class="center">Thanks!</p>
+<p class="center">Slides are at <a class="reference external" href="http://yoriksar.github.com/gerrit-slides/">http://yoriksar.github.com/gerrit-slides/</a></p>
+</div>
+</div>
+</body>
+</html>
