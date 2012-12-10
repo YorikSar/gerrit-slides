@@ -211,16 +211,20 @@ How to use it with Git
 
 .. class:: incremental
 
-    * URL looks like :small:`ssh://<USER>@<host>:29418/<PROJECT>`
+    * URL looks like: ``ssh://<USER>@<host>:29418/<PROJECT>``
     * Create a new change::
 
           git push gerrit HEAD:refs/for/thebranch
+
+    * Fetch patchset (access later through FETCH_HEAD)::
+
+          git fetch gerrit refs/changes/<ID_mod100>/<SHORT_ID>/<PATCHSET_NUM>
 
     * Create a new patchset in a change::
 
           git push gerrit HEAD:refs/change/<SHORT_ID>
 
-    * You can even need to do something like this::
+    * You might even need to do something like this::
 
           git push gerrit HEAD:refs/for/master
                           HEAD~3:refs/changes/1500
@@ -249,6 +253,7 @@ Change-Id magic
         Some long lines about life, the Universe and everything.
 
         Change-Id: Ic0ffeec0ffeec0ffeec0ffeec0ffeec0ffeec0ff
+
     * Gerrit comes with a commit message hook that automatically generates
       Change-Id line in every commit::
 
@@ -329,6 +334,8 @@ defaultbranch leaves no place to forget where to push
     File should be created/edited by project/branch maintainer.
 
     Merges should not affect it.
+
+    defaultbranch is pretty recent
     
 git-review: workflow
 ====================
