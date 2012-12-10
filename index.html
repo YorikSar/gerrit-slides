@@ -657,11 +657,16 @@ details</p>
 <div class="slide" id="how-to-use-it-with-git">
 <h1>How to use it with Git</h1>
 <ul class="incremental">
-<li><p class="first">URL looks like <span class="small">ssh://&lt;USER&gt;&#64;&lt;host&gt;:29418/&lt;PROJECT&gt;</span></p>
+<li><p class="first">URL looks like: <tt class="docutils literal"><span class="pre">ssh://&lt;USER&gt;&#64;&lt;host&gt;:29418/&lt;PROJECT&gt;</span></tt></p>
 </li>
 <li><p class="first">Create a new change:</p>
 <pre class="literal-block">
 git push gerrit HEAD:refs/for/thebranch
+</pre>
+</li>
+<li><p class="first">Fetch patchset (access later through FETCH_HEAD):</p>
+<pre class="literal-block">
+git fetch gerrit refs/changes/&lt;ID_mod100&gt;/&lt;SHORT_ID&gt;/&lt;PATCHSET_NUM&gt;
 </pre>
 </li>
 <li><p class="first">Create a new patchset in a change:</p>
@@ -669,7 +674,7 @@ git push gerrit HEAD:refs/for/thebranch
 git push gerrit HEAD:refs/change/&lt;SHORT_ID&gt;
 </pre>
 </li>
-<li><p class="first">You can even need to do something like this:</p>
+<li><p class="first">You might even need to do something like this:</p>
 <pre class="literal-block">
 git push gerrit HEAD:refs/for/master
                 HEAD~3:refs/changes/1500
@@ -777,6 +782,7 @@ upstream)</p>
 <div class="notes container">
 <p>File should be created/edited by project/branch maintainer.</p>
 <p>Merges should not affect it.</p>
+<p>defaultbranch is pretty recent</p>
 </div>
 </div>
 <div class="slide" id="git-review-workflow">
