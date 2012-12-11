@@ -222,7 +222,7 @@ How to use it with Git
 
     * Create a new patchset in a change::
 
-          git push gerrit HEAD:refs/change/<SHORT_ID>
+          git push gerrit HEAD:refs/changes/<SHORT_ID>
 
     * You might even need to do something like this::
 
